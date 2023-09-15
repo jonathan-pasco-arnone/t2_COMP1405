@@ -10,7 +10,8 @@ def main():
     search_word = input("Please enter a search word for the files:\n")
     line_number = 1 # Starting number of the pages.txt files lines
     # Holds the frequency of a word in each file
-    # (ex: [1, 5, 3, 6] in which file one has the word once, file 2 has the word five times and so on)
+    # (ex: [1, 5, 3, 6] in which file one has the word once,
+    # file 2 has the word five times and so on)
     file_frequency = []
     total_word_frequency = []
     while linecache.getline("pages.txt", line_number) != "":
@@ -26,28 +27,33 @@ def main():
             if linecache.getline(current_file, file_line_number) == (search_word + "\n"):
                 file_frequency[line_number - 1] += 1
             file_line_number += 1
-        total_word_frequency.append(file_line_number) # records the amount of lines in the file
+        # Records the amount of lines in the file with the -1 because
+        # the previous while loop continued until it reached its peak
+        total_word_frequency.append(file_line_number - 1)
         line_number += 1
-    
-    # Finds the highest value and index
+
+    # Finds the highest value and its index
+    # along with the highest ratio and its index
     index = 0
-    current_highest = 0
-    current_highest_index = 0
+    ratio = 0
+    highest_value = 0
+    highest_value_index = 0
+    highest_ratio = 0
+    highest_ratio_index = 0
     for value in file_frequency:
-        if value > current_highest:
-            current_highest = value
-            current_highest_index = index
+        ratio = value / total_word_frequency[index]
+        if ratio > highest_ratio:
+            highest_ratio = ratio
+            highest_ratio_index = index
+        if value > highest_value:
+            highest_value = value
+            highest_value_index = index
         index += 1
-    
-    # The following code block
 
-    print("Max Page (Count): N-{}.txt".format(current_highest_index))
-    print("Max Count: ", current_highest)
-    print("Max Page (Ratio): N-{}.txt".format())
-    print("Max Ratio: ", )
-    
-    print("The total times the word \"", search_word, "\" appears in each file is ", file_frequency)
-
+    print("\nMax Page (Count): N-" + str(highest_value_index) +".txt")
+    print("Max Count: ", highest_value)
+    print("Max Page (Ratio): N-" + str(highest_ratio_index) + ".txt")
+    print("Max Ratio: ", highest_ratio)
 
 if __name__ == "__main__":
     main()
