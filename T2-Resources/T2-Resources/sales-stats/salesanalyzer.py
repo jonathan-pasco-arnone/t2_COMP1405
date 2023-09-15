@@ -9,7 +9,7 @@ def get_number_purchases(filename):
     """Retrieves the number of purchases (aka amount of customers)"""
     total_purchases = 0
     current_name_line = 1 # First name is on line 1 and not 0
-    while linecache.getline("./sales-stats/" + filename, current_name_line) != "":
+    while linecache.getline(filename, current_name_line) != "":
         total_purchases += 1
         current_name_line += 6
     return total_purchases
@@ -18,8 +18,8 @@ def get_total_purchases(filename):
     """Retrieves the total cost of all purchases"""
     total_price = 0
     current_name_line = 6 # First total cost is on line 6
-    while linecache.getline("./sales-stats/" + filename, current_name_line) != "":
-        total_price += int(linecache.getline("./sales-stats/" + filename, current_name_line))
+    while linecache.getline(filename, current_name_line) != "":
+        total_price += int(linecache.getline(filename, current_name_line))
         current_name_line += 6
     return total_price
 
@@ -34,10 +34,10 @@ def get_number_customer_purchases(filename, customer):
     """Finds the number of purchases made by a specific customer"""
     total_purchases_from_customer = 0
     current_name_line = 1 # First name is on line 1 and not 0
-    while linecache.getline("./sales-stats/" + filename, current_name_line) != "":
+    while linecache.getline(filename, current_name_line) != "":
          # The \n is required because the linecach.getline function
          # automatically appends a \n to the end of the string that it reads
-        if linecache.getline("./sales-stats/" + filename, current_name_line) == (customer + "\n"):
+        if linecache.getline(filename, current_name_line) == (customer + "\n"):
             total_purchases_from_customer += 1
         current_name_line += 6
     return total_purchases_from_customer
@@ -46,10 +46,10 @@ def get_total_customer_purchases(filename, customer):
     """Gets the total number of items that have been purchased by a specific customer"""
     total_price_from_customer = 0
     current_name_line = 1 # First name is on line 1 and not 0
-    while linecache.getline("./sales-stats/" + filename, current_name_line) != "":
+    while linecache.getline(filename, current_name_line) != "":
          # The \n is required because the linecach.getline function
          # automatically appends a \n to the end of the string that it reads
-        if linecache.getline("./sales-stats/" + filename, current_name_line) == (customer + "\n"):
+        if linecache.getline(filename, current_name_line) == (customer + "\n"):
             # If the name matches the inputed customer then it will add their
             # total cost (which is found 5 lines below their name)
             total_price_from_customer += int(linecache.getline("./sales-stats/"
@@ -73,14 +73,14 @@ def get_most_popular_product(filename):
     toaster_amount = 0
     return_value = ""
     current_line = 2 # First product starts at line 2
-    while linecache.getline("./sales-stats/" + filename, current_line) != "":
-        desktop_amount += int(linecache.getline("./sales-stats/" + filename, current_line))
+    while linecache.getline(filename, current_line) != "":
+        desktop_amount += int(linecache.getline(filename, current_line))
         current_line += 1 # Cycle to the next product
-        laptop_amount += int(linecache.getline("./sales-stats/" + filename, current_line))
+        laptop_amount += int(linecache.getline(filename, current_line))
         current_line += 1
-        tablet_amount += int(linecache.getline("./sales-stats/" + filename, current_line))
+        tablet_amount += int(linecache.getline(filename, current_line))
         current_line += 1
-        toaster_amount += int(linecache.getline("./sales-stats/" + filename, current_line))
+        toaster_amount += int(linecache.getline(filename, current_line))
         current_line += 3 # Cycle to the next customer
     if (desktop_amount >= laptop_amount and desktop_amount > tablet_amount
           and desktop_amount > toaster_amount):
