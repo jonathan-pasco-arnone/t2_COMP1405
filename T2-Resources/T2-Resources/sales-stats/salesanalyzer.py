@@ -1,6 +1,6 @@
 """ Module file for sales analysis """
 
-# Created by: Jonathan Pasco-Arnone
+# Created by: Jonathan Pasco-Arnone and Aidan Lalonde-Novales
 # Created on: September 2023
 
 import linecache # allows me to easily get the contents of each line
