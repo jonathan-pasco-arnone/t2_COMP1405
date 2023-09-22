@@ -1,6 +1,6 @@
 """ Searching files program """
 
-# Created by: Jonathan Pasco-Arnone
+# Created by: Jonathan Pasco-Arnone and Aidan Lalonde-Novales
 # Created on: September 2023
 
 # This is so the file does not close immediately after completing the code
