@@ -3,6 +3,8 @@
 # Created by: Jonathan Pasco-Arnone
 # Created on: September 2023
 
+# This is so the file does not close immediately after completing the code
+from time import sleep
 import linecache
 
 def main():
@@ -54,6 +56,8 @@ def main():
     print("Max Count: ", highest_value)
     print("Max Page (Ratio): N-" + str(highest_ratio_index) + ".txt")
     print("Max Ratio: ", highest_ratio)
+
+    sleep(20) # Gives 20 seconds to review answers
 
 if __name__ == "__main__":
     main()
