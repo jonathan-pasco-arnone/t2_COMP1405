@@ -1,3 +1,6 @@
+# This is so the file does not close immediately after completing the code
+from time import sleep
+
 import salesanalyzer
 
 #get_number_purchases
@@ -390,3 +393,5 @@ except:
     raise    
 print()
 print()
+
+sleep(60) # Gives 1 minute of time to check all the answers
