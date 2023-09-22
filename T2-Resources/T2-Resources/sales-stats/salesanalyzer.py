@@ -8,19 +8,19 @@ import linecache # allows me to easily get the contents of each line
 def get_number_purchases(filename):
     """Retrieves the number of purchases (aka amount of customers)"""
     total_purchases = 0
-    currnet_line = 1 # First name is on line 1 and not 0
-    while linecache.getline(filename, currnet_line) != "":
+    current_line = 1 # First name is on line 1 and not 0
+    while linecache.getline(filename, current_line) != "":
         total_purchases += 1
-        currnet_line += 6
+        current_line += 6
     return total_purchases
 
 def get_total_purchases(filename):
     """Retrieves the total cost of all purchases"""
     total_price = 0
-    currnet_line = 6 # First total cost is on line 6
-    while linecache.getline(filename, currnet_line) != "":
-        total_price += int(linecache.getline(filename, currnet_line))
-        currnet_line += 6
+    current_line = 6 # First total cost is on line 6
+    while linecache.getline(filename, current_line) != "":
+        total_price += int(linecache.getline(filename, current_line))
+        current_line += 6
     return total_price
 
 def get_average_purchases(filename):
@@ -33,28 +33,27 @@ def get_average_purchases(filename):
 def get_number_customer_purchases(filename, customer):
     """Finds the number of purchases made by a specific customer"""
     total_purchases_from_customer = 0
-    currnet_line = 1 # First name is on line 1 and not 0
-    while linecache.getline(filename, currnet_line) != "":
-         # The \n is required because the linecach.getline function
+    current_line = 1 # First name is on line 1 and not 0
+    while linecache.getline(filename, current_line) != "":
+         # The \n is required because the linecache.getline function
          # automatically appends a \n to the end of the string that it reads
-        if linecache.getline(filename, currnet_line) == (customer + "\n"):
+        if linecache.getline(filename, current_line) == (customer + "\n"):
             total_purchases_from_customer += 1
-        currnet_line += 6
+        current_line += 6
     return total_purchases_from_customer
 
 def get_total_customer_purchases(filename, customer):
     """Gets the total number of items that have been purchased by a specific customer"""
     total_price_from_customer = 0
-    currnet_line = 1 # First name is on line 1 and not 0
-    while linecache.getline(filename, currnet_line) != "":
-         # The \n is required because the linecach.getline function
+    current_line = 1 # First name is on line 1 and not 0
+    while linecache.getline(filename, current_line) != "":
+         # The \n is required because the linecache.getline function
          # automatically appends a \n to the end of the string that it reads
-        if linecache.getline(filename, currnet_line) == (customer + "\n"):
+        if linecache.getline(filename, current_line) == (customer + "\n"):
             # If the name matches the inputed customer then it will add their
             # total cost (which is found 5 lines below their name)
-            total_price_from_customer += int(linecache.getline("./sales-stats/"
-                  + filename, currnet_line + 5))
-        currnet_line += 6
+            total_price_from_customer += int(linecache.getline(filename, current_line + 5))
+        current_line += 6
     return total_price_from_customer
 
 def get_average_customer_purchases(filename, customer):
